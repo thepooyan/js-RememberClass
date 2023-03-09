@@ -23,10 +23,16 @@ class Remember {
             localStorage.setItem(this.commonAttribute, JSON.stringify(storage))
       }
 
-      recall(elementIdentifier) {
+      check(elementIdentifier) {
             let storage = localStorage.getItem(this.commonAttribute);
             storage = JSON.parse(storage);
             return (storage?.includes(elementIdentifier))
+      }
+
+      recall() {
+            let storage = localStorage.getItem(this.commonAttribute);
+            storage = JSON.parse(storage);
+            return storage
       }
 
       forgetAll() {
@@ -37,7 +43,7 @@ class Remember {
 let isClicked = new Remember("isClicked");
 
 document.querySelectorAll('button').forEach(item => {
-      if (isClicked.recall(item.id)) {
+      if (isClicked.check(item.id)) {
             item.classList.add('clicked')
       } else {
 
